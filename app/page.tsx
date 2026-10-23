@@ -1,69 +1,170 @@
-import Image from "next/image";
+type Section = {
+  id: string;
+  label: string;
+};
+
+type CareerItem = {
+  title: string;
+  description: string;
+};
+
+const sections: Section[] = [
+  { id: "about", label: "About" },
+  { id: "career", label: "Career" },
+  { id: "skills", label: "Skills" },
+];
+
+const careerItems: CareerItem[] = [
+  {
+    title: "研究開発職",
+    description: "研究開発職としてモノづくりに携わる",
+  },
+  {
+    title: "オーストラリア滞在",
+    description: "ワーキングホリデービザで約2年間オーストラリアに滞在",
+  },
+  {
+    title: "現在",
+    description: "AI・プログラミングを学びながらWebサイト制作に挑戦中",
+  },
+];
+
+const skills: string[] = [
+  "HTML / CSS",
+  "JavaScript",
+  "TypeScript",
+  "Next.js",
+  "Tailwind CSS",
+];
+
+const linkClassName =
+  "rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-700 dark:focus-visible:outline-sky-300";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex flex-1 flex-col bg-background text-foreground">
+      <header className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 px-5 py-6 sm:px-8">
+        <a href="#top" className={`text-sm font-semibold tracking-widest ${linkClassName}`}>
+          SHO SAKAMOTO
+        </a>
+        <nav aria-label="ページ内リンク">
+          <ul className="flex gap-5 text-sm text-foreground/75">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a href={`#${section.id}`} className={linkClassName}>
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      <main id="top" className="mx-auto w-full max-w-3xl flex-1 px-5 sm:px-8">
+        {/* HERO */}
+        <section aria-labelledby="hero-heading" className="py-16 sm:py-24">
+          <p className="text-sm font-medium tracking-widest text-sky-700 dark:text-sky-300">
+            AI・プログラミングを学習中
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h1
+            id="hero-heading"
+            className="mt-4 text-4xl font-bold tracking-wide sm:text-6xl"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            SHO SAKAMOTO
+          </h1>
+          <p className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg">
+            新しい技術を学びながら、Webサイト制作に挑戦しています。
+          </p>
+        </section>
+
+        {/* ABOUT */}
+        <section
+          id="about"
+          aria-labelledby="about-heading"
+          className="border-t border-foreground/10 py-14 sm:py-20"
+        >
+          <SectionHeading id="about-heading" label="About" title="自己紹介" />
+          <div className="mt-8 max-w-2xl space-y-4 text-base text-foreground/85 sm:text-lg">
+            <p>新しい技術を学びながら、Webサイト制作に挑戦しています。</p>
+            <p>
+              前職は、研究開発職としてモノづくりへ貢献をしていました。その後、ワーホリビザで約2年間オーストラリアへ滞在しました。
+            </p>
+          </div>
+        </section>
+
+        {/* CAREER */}
+        <section
+          id="career"
+          aria-labelledby="career-heading"
+          className="border-t border-foreground/10 py-14 sm:py-20"
+        >
+          <SectionHeading id="career-heading" label="Career" title="これまでの経歴" />
+          <ol className="mt-8 space-y-8 border-l-2 border-sky-700/25 pl-6 dark:border-sky-300/25">
+            {careerItems.map((item) => (
+              <li key={item.title} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-2.5 -left-[31px] size-3 rounded-full border-2 border-background bg-sky-700 dark:bg-sky-300"
+                />
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-1 text-foreground/80">{item.description}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* SKILLS */}
+        <section
+          id="skills"
+          aria-labelledby="skills-heading"
+          className="border-t border-foreground/10 py-14 sm:py-20"
+        >
+          <SectionHeading id="skills-heading" label="Skills" title="学習中の技術" />
+          <p className="mt-4 text-sm text-foreground/75 sm:text-base">
+            以下はすべて現在学習中の技術です。実際に手を動かしながら、少しずつ理解を深めています。
+          </p>
+          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {skills.map((skill) => (
+              <li
+                key={skill}
+                className="flex items-center justify-between gap-3 rounded-xl border border-foreground/10 bg-white/70 px-5 py-4 shadow-sm dark:bg-white/5"
+              >
+                <span className="font-semibold">{skill}</span>
+                <span className="shrink-0 rounded-full bg-sky-700/10 px-2.5 py-0.5 text-xs font-medium text-sky-800 dark:bg-sky-300/15 dark:text-sky-200">
+                  学習中
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
+
+      <footer className="border-t border-foreground/10">
+        <p className="mx-auto max-w-3xl px-5 py-8 text-sm text-foreground/70 sm:px-8">
+          © SHO SAKAMOTO
+        </p>
+      </footer>
+    </div>
+  );
+}
+
+function SectionHeading({
+  id,
+  label,
+  title,
+}: {
+  id: string;
+  label: string;
+  title: string;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-semibold tracking-[0.2em] text-sky-700 uppercase dark:text-sky-300">
+        {label}
+      </p>
+      <h2 id={id} className="mt-2 text-2xl font-bold sm:text-3xl">
+        {title}
+      </h2>
     </div>
   );
 }
