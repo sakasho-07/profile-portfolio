@@ -14,6 +14,7 @@ const sections: Section[] = [
   { id: "about", label: "About" },
   { id: "career", label: "Career" },
   { id: "skills", label: "Skills" },
+  { id: "works", label: "Works" },
 ];
 
 const careerItems: CareerItem[] = [
@@ -106,6 +107,46 @@ const skills: Skill[] = [
   },
 ];
 
+type WorkStatus = "制作中" | "準備中" | "計画中";
+
+type Work = {
+  title: string;
+  description: string;
+  status: WorkStatus;
+  tools?: string[];
+};
+
+const works: Work[] = [
+  {
+    title: "プロフィールサイト",
+    description:
+      "いまご覧いただいているこのサイトです。これまでの経歴や学んでいることが伝わるように、デザインと文章を少しずつ見直しながら制作しています。",
+    status: "制作中",
+    tools: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    title: "美容室のランディングページ",
+    description:
+      "架空の美容室を想定した練習作品です。お店の雰囲気が伝わるデザインと、見やすいページ構成づくりを練習します。",
+    status: "準備中",
+  },
+  {
+    title: "次の制作に向けて",
+    description:
+      "練習を重ねながら、次に取り組む制作のテーマを考えています。完成した作品から、ここに追加していきます。",
+    status: "計画中",
+  },
+];
+
+const workStatusClassNames: Record<WorkStatus, string> = {
+  制作中:
+    "bg-[#b4532f] text-white dark:bg-[#e8987a] dark:text-[#2a211b]",
+  準備中:
+    "bg-[#b4532f]/10 text-[#9a4425] dark:bg-[#e8987a]/15 dark:text-[#f0b49a]",
+  計画中:
+    "border border-dashed border-[#c9b29c] text-[#8a7262] dark:border-[#6b5546] dark:text-[#bfa995]",
+};
+
 const linkClassName =
   "rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-700 dark:focus-visible:outline-sky-300";
 
@@ -163,16 +204,12 @@ export default function Home() {
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                {/* WORKSセクション追加後に #works へのリンクへ差し替える */}
-                <span
-                  aria-disabled="true"
-                  className="inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-full border border-dashed border-[#c9b29c] px-6 py-3 text-sm font-semibold text-[#8a7262] dark:border-[#6b5546] dark:text-[#bfa995]"
+                <a
+                  href="#works"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b4532f] px-6 py-3 text-sm font-semibold text-[#b4532f] transition-colors hover:bg-[#b4532f]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b4532f] dark:border-[#e8987a] dark:text-[#e8987a] dark:hover:bg-[#e8987a]/10 dark:focus-visible:outline-[#e8987a]"
                 >
                   制作実績を見る
-                  <span className="rounded-full bg-[#b4532f]/10 px-2 py-0.5 text-xs font-medium text-[#9a4425] dark:bg-[#e8987a]/15 dark:text-[#f0b49a]">
-                    準備中
-                  </span>
-                </span>
+                </a>
                 <a
                   href="#about"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b4532f] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#9a4425] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b4532f] dark:bg-[#e8987a] dark:text-[#2a211b] dark:hover:bg-[#f0b49a] dark:focus-visible:outline-[#e8987a]"
@@ -284,6 +321,49 @@ export default function Home() {
               );
             })}
           </div>
+        </section>
+
+        {/* WORKS */}
+        <section
+          id="works"
+          aria-labelledby="works-heading"
+          className="border-t border-foreground/10 py-14 sm:py-20"
+        >
+          <SectionHeading id="works-heading" label="Works" title="制作実績" />
+          <p className="mt-4 text-sm text-foreground/75 sm:text-base">
+            制作中の作品や、これから取り組む予定の作品を紹介しています。公開できる作品ができ次第、順に更新していきます。
+          </p>
+          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {works.map((work, index) => {
+              const isLast = index === works.length - 1;
+
+              return (
+                <li
+                  key={work.title}
+                  className={`flex flex-col rounded-2xl border p-5 sm:p-6 ${
+                    isLast
+                      ? "border-dashed border-[#c9b29c] sm:col-span-2 dark:border-[#6b5546]"
+                      : "border-[#eadccb] bg-[#fbf5ec] dark:border-[#4a3a2e] dark:bg-[#2a211b]"
+                  }`}
+                >
+                  <p
+                    className={`self-start rounded-full px-2.5 py-0.5 text-xs leading-4 font-semibold tracking-[0.1em] ${workStatusClassNames[work.status]}`}
+                  >
+                    {work.status}
+                  </p>
+                  <h3 className="mt-3 text-lg font-semibold">{work.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#6b5344] dark:text-[#d9c8b6]">
+                    {work.description}
+                  </p>
+                  {work.tools && (
+                    <p className="mt-4 text-xs tracking-wide text-[#8a7262] dark:text-[#bfa995]">
+                      使用技術：{work.tools.join(" / ")}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </section>
       </main>
 
