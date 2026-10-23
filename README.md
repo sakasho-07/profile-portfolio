@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SHO SAKAMOTO Profile Portfolio
 
-## Getting Started
+SHO SAKAMOTOのプロフィールポートフォリオサイトです。
+化学メーカーでの研究開発職、オーストラリアでの約2年間のワーキングホリデーを経て、現在AIとプログラミングを学びながらWeb制作に取り組んでいる経歴や学習内容を紹介しています。
 
-First, run the development server:
+**公開URL：** https://profile-portfolio-tan.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 主なセクション
+
+| セクション | 内容 |
+| --- | --- |
+| About（自己紹介） | これまでの歩みと、Web制作に取り組む想い |
+| Career（経歴） | 大学院修了から現在までをタイムライン形式で紹介 |
+| Skills（スキル） | 「このサイトで使用」「学習中」「学び方」の3グループで紹介 |
+| Works（制作実績） | 制作中・準備中・計画中のステータス付きで作品を紹介 |
+
+## 使用技術
+
+- [Next.js](https://nextjs.org) 16.4.2（App Router）
+- React 19.3.0
+- TypeScript 5
+- Tailwind CSS 4（`@tailwindcss/turbopack` で読み込み）
+- ESLint 9（`eslint-config-next`）
+- `next/font`（Geist / Geist Mono）
+- Vercel（ホスティング）
+
+## 実装済みの特徴
+
+- **レスポンシブ対応**：Tailwind CSSのブレークポイントで、スマートフォンからPCまでレイアウトや文字サイズを調整
+- **ダークモード対応**：OSの設定（`prefers-color-scheme`）に合わせて配色を自動で切り替え
+- **SEO設定**：Metadata APIでタイトル・ディスクリプション・OGP（`og:title` / `og:description` / `og:site_name` / `og:locale` など）を設定し、`<html lang="ja">` を指定
+- **アクセシビリティへの配慮**：セマンティックなHTML構造、`aria-labelledby` によるセクション見出しの関連付け、キーボード操作時のフォーカス表示
+- **ページ内ナビゲーション**：ヘッダーから各セクションへアンカーリンクで移動
+- **データとUIの分離**：経歴・スキル・制作実績は配列データで管理し、項目の追加・更新がしやすい構成
+
+## ディレクトリ構成
+
+```
+app/
+├── layout.tsx   # 共通レイアウト・メタデータ（SEO設定）
+├── page.tsx     # トップページ（各セクションとデータ）
+└── globals.css  # Tailwind CSSの読み込み・カラー・フォント設定
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ローカルでの起動方法
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ブラウザで http://localhost:3000 を開くと確認できます。
 
-## Learn More
+## ビルド確認方法
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ビルド後に `npm run start` を実行すると、本番環境と同じ状態をローカルで確認できます。
