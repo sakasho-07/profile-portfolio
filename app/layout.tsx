@@ -12,10 +12,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteTitle = "SHO SAKAMOTO | Web制作ポートフォリオ";
+const siteDescription =
+  "化学メーカーでの研究開発職と、オーストラリアでの約2年間のワーキングホリデーを経験したSHO SAKAMOTOのポートフォリオサイトです。現在はAIとプログラミングを学びながら、Webサイト制作に取り組んでいます。";
+
 export const metadata: Metadata = {
-  title: "SHO SAKAMOTO | Portfolio",
-  description:
-    "研究開発職でのモノづくりの経験と、オーストラリアでの約2年間の滞在経験を持つSHO SAKAMOTOのプロフィールサイトです。AI・プログラミングを学びながら、Webサイト制作に挑戦しています。",
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    siteName: "SHO SAKAMOTO",
+    locale: "ja_JP",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
