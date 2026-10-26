@@ -139,16 +139,13 @@ const works: Work[] = [
 ];
 
 const workStatusClassNames: Record<WorkStatus, string> = {
-  制作中:
-    "bg-[#b4532f] text-white dark:bg-[#e8987a] dark:text-[#2a211b]",
-  準備中:
-    "bg-[#b4532f]/10 text-[#9a4425] dark:bg-[#e8987a]/15 dark:text-[#f0b49a]",
-  計画中:
-    "border border-dashed border-[#c9b29c] text-[#8a7262] dark:border-[#6b5546] dark:text-[#bfa995]",
+  制作中: "bg-primary text-primary-foreground",
+  準備中: "bg-accent text-accent-foreground",
+  計画中: "border border-dashed border-border-strong text-foreground-subtle",
 };
 
 const linkClassName =
-  "rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-700 dark:focus-visible:outline-sky-300";
+  "rounded-sm underline-offset-4 transition-colors hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
 export default function Home() {
   return (
@@ -158,7 +155,7 @@ export default function Home() {
           SHO SAKAMOTO
         </a>
         <nav aria-label="ページ内リンク">
-          <ul className="flex gap-5 text-sm text-foreground/75">
+          <ul className="flex gap-5 text-sm text-foreground-muted">
             {sections.map((section) => (
               <li key={section.id}>
                 <a href={`#${section.id}`} className={linkClassName}>
@@ -173,18 +170,18 @@ export default function Home() {
       <main id="top" className="mx-auto w-full max-w-3xl flex-1 px-5 sm:px-8">
         {/* HERO */}
         <section aria-labelledby="hero-heading" className="py-8 sm:py-14">
-          <div className="relative overflow-hidden rounded-[2rem] border border-[#eadccb] bg-[#fbf5ec] px-6 py-14 text-[#4a3426] sm:px-12 sm:py-20 dark:border-[#4a3a2e] dark:bg-[#2a211b] dark:text-[#f3e8da]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface px-6 py-14 text-foreground shadow-sm sm:px-12 sm:py-20">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -top-24 -right-20 size-64 rounded-full bg-[#e7a27f]/25 blur-3xl sm:size-80 dark:bg-[#c8714a]/20"
+              className="pointer-events-none absolute -top-24 -right-20 size-64 rounded-full bg-accent blur-3xl sm:size-80"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -bottom-28 -left-16 size-56 rounded-full bg-[#e9cfa9]/40 blur-3xl dark:bg-[#8a5a3c]/20"
+              className="pointer-events-none absolute -bottom-28 -left-16 size-56 rounded-full bg-primary/10 blur-3xl"
             />
 
             <div className="relative">
-              <p className="text-xs font-semibold tracking-[0.3em] text-[#b4532f] dark:text-[#e8987a]">
+              <p className="text-xs font-semibold tracking-[0.3em] text-primary">
                 PORTFOLIO / 2026
               </p>
               <h1
@@ -194,25 +191,25 @@ export default function Home() {
                 <span className="inline-block">経験をつなぎ、</span>
                 <span className="inline-block">新しい価値をつくる。</span>
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-loose text-[#6b5344] sm:text-lg dark:text-[#d9c8b6]">
+              <p className="mt-6 max-w-xl text-base leading-loose text-foreground-muted sm:text-lg">
                 研究開発職で培った考える力と、オーストラリアでの約2年間の経験。現在はAIとプログラミングを学びながら、Web制作に挑戦しています。
               </p>
 
               <p className="mt-10 flex items-center gap-3 text-sm font-semibold tracking-[0.25em]">
-                <span aria-hidden="true" className="h-px w-8 bg-[#b4532f] dark:bg-[#e8987a]" />
+                <span aria-hidden="true" className="h-px w-8 bg-primary" />
                 SHO SAKAMOTO
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <a
                   href="#works"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#b4532f] px-6 py-3 text-sm font-semibold text-[#b4532f] transition-colors hover:bg-[#b4532f]/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b4532f] dark:border-[#e8987a] dark:text-[#e8987a] dark:hover:bg-[#e8987a]/10 dark:focus-visible:outline-[#e8987a]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-primary bg-surface px-6 py-3 text-sm font-semibold text-primary transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
                 >
                   制作実績を見る
                 </a>
                 <a
                   href="#about"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#b4532f] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#9a4425] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b4532f] dark:bg-[#e8987a] dark:text-[#2a211b] dark:hover:bg-[#f0b49a] dark:focus-visible:outline-[#e8987a]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
                 >
                   プロフィール
                   <span aria-hidden="true">→</span>
@@ -226,10 +223,10 @@ export default function Home() {
         <section
           id="about"
           aria-labelledby="about-heading"
-          className="border-t border-foreground/10 py-14 sm:py-20"
+          className="border-t border-border py-14 sm:py-20"
         >
           <SectionHeading id="about-heading" label="About" title="自己紹介" />
-          <div className="mt-8 max-w-2xl space-y-4 text-base text-foreground/85 sm:text-lg">
+          <div className="mt-8 max-w-2xl space-y-4 text-base text-foreground-muted sm:text-lg">
             <p>
               大学院を修了後、化学メーカーで約4年半、研究開発の仕事に携わりました。試行錯誤を重ねながら課題に向き合う日々を経て、自分の世界を広げるため、オーストラリアで約2年間のワーキングホリデーに挑戦しました。
             </p>
@@ -246,36 +243,36 @@ export default function Home() {
         <section
           id="career"
           aria-labelledby="career-heading"
-          className="border-t border-foreground/10 py-14 sm:py-20"
+          className="border-t border-border py-14 sm:py-20"
         >
           <SectionHeading id="career-heading" label="Career" title="これまでの経歴" />
-          <ol className="mt-10 space-y-10 border-l-2 border-[#b4532f]/25 pl-6 sm:space-y-12 dark:border-[#e8987a]/25">
+          <ol className="mt-10 space-y-10 border-l-2 border-primary/25 pl-6 sm:space-y-12">
             {careerItems.map((item) =>
               item.isCurrent ? (
                 <li key={item.title} className="relative">
                   <span
                     aria-hidden="true"
-                    className="absolute top-6 -left-[31px] size-3 rounded-full bg-[#b4532f] ring-4 ring-[#b4532f]/20 sm:top-7 dark:bg-[#e8987a] dark:ring-[#e8987a]/20"
+                    className="absolute top-6 -left-[31px] size-3 rounded-full bg-primary ring-4 ring-primary/20 sm:top-7"
                   />
-                  <div className="rounded-2xl border border-[#eadccb] bg-[#fbf5ec] p-5 text-[#4a3426] sm:p-6 dark:border-[#4a3a2e] dark:bg-[#2a211b] dark:text-[#f3e8da]">
-                    <p className="inline-block rounded-full bg-[#b4532f] px-2.5 py-0.5 text-xs leading-4 font-semibold tracking-[0.2em] text-white dark:bg-[#e8987a] dark:text-[#2a211b]">
+                  <div className="rounded-2xl border border-primary/20 bg-accent p-5 text-foreground sm:p-6">
+                    <p className="inline-block rounded-full bg-primary px-2.5 py-0.5 text-xs leading-4 font-semibold tracking-[0.2em] text-primary-foreground">
                       {item.period}
                     </p>
                     <h3 className="mt-3 text-lg font-semibold">{item.title}</h3>
-                    <p className="mt-1 text-[#6b5344] dark:text-[#d9c8b6]">{item.description}</p>
+                    <p className="mt-1 text-foreground-muted">{item.description}</p>
                   </div>
                 </li>
               ) : (
                 <li key={item.title} className="relative">
                   <span
                     aria-hidden="true"
-                    className="absolute top-1 -left-[31px] size-3 rounded-full border-2 border-background bg-[#b4532f] dark:bg-[#e8987a]"
+                    className="absolute top-1 -left-[31px] size-3 rounded-full border-2 border-background bg-primary"
                   />
-                  <p className="text-xs leading-5 font-semibold tracking-[0.2em] text-[#b4532f] dark:text-[#e8987a]">
+                  <p className="text-xs leading-5 font-semibold tracking-[0.2em] text-primary">
                     {item.period}
                   </p>
                   <h3 className="mt-1 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-1 text-foreground/80">{item.description}</p>
+                  <p className="mt-1 text-foreground-muted">{item.description}</p>
                 </li>
               ),
             )}
@@ -286,10 +283,10 @@ export default function Home() {
         <section
           id="skills"
           aria-labelledby="skills-heading"
-          className="border-t border-foreground/10 py-14 sm:py-20"
+          className="border-t border-border py-14 sm:py-20"
         >
           <SectionHeading id="skills-heading" label="Skills" title="技術と学び方" />
-          <p className="mt-4 text-sm text-foreground/75 sm:text-base">
+          <p className="mt-4 text-sm text-foreground-muted sm:text-base">
             このサイトで実際に使った技術と、いま学んでいる技術を分けて紹介しています。どれもまだ学習の途中ですが、手を動かしながら少しずつ理解を深めています。
           </p>
           <div className="mt-10 space-y-10 sm:space-y-12">
@@ -299,7 +296,7 @@ export default function Home() {
 
               return (
                 <div key={group.id}>
-                  <h3 className="text-xs leading-5 font-semibold tracking-[0.2em] text-[#b4532f] dark:text-[#e8987a]">
+                  <h3 className="text-xs leading-5 font-semibold tracking-[0.2em] text-primary">
                     {group.label}
                   </h3>
                   <ul
@@ -308,10 +305,10 @@ export default function Home() {
                     {groupSkills.map((skill) => (
                       <li
                         key={skill.name}
-                        className={`rounded-2xl border border-[#eadccb] p-5 sm:p-6 dark:border-[#4a3a2e] ${isUsed ? "bg-[#fbf5ec] dark:bg-[#2a211b]" : ""}`}
+                        className={`rounded-2xl border p-5 sm:p-6 ${isUsed ? "border-border bg-surface shadow-sm" : "border-border-strong"}`}
                       >
                         <h4 className="font-semibold">{skill.name}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-[#6b5344] dark:text-[#d9c8b6]">
+                        <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
                           {skill.description}
                         </p>
                       </li>
@@ -327,10 +324,10 @@ export default function Home() {
         <section
           id="works"
           aria-labelledby="works-heading"
-          className="border-t border-foreground/10 py-14 sm:py-20"
+          className="border-t border-border py-14 sm:py-20"
         >
           <SectionHeading id="works-heading" label="Works" title="制作実績" />
-          <p className="mt-4 text-sm text-foreground/75 sm:text-base">
+          <p className="mt-4 text-sm text-foreground-muted sm:text-base">
             制作中の作品や、これから取り組む予定の作品を紹介しています。公開できる作品ができ次第、順に更新していきます。
           </p>
           <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -342,8 +339,8 @@ export default function Home() {
                   key={work.title}
                   className={`flex flex-col rounded-2xl border p-5 sm:p-6 ${
                     isLast
-                      ? "border-dashed border-[#c9b29c] sm:col-span-2 dark:border-[#6b5546]"
-                      : "border-[#eadccb] bg-[#fbf5ec] dark:border-[#4a3a2e] dark:bg-[#2a211b]"
+                      ? "border-dashed border-border-strong sm:col-span-2"
+                      : "border-border bg-surface shadow-sm"
                   }`}
                 >
                   <p
@@ -352,11 +349,11 @@ export default function Home() {
                     {work.status}
                   </p>
                   <h3 className="mt-3 text-lg font-semibold">{work.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6b5344] dark:text-[#d9c8b6]">
+                  <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
                     {work.description}
                   </p>
                   {work.tools && (
-                    <p className="mt-4 text-xs tracking-wide text-[#8a7262] dark:text-[#bfa995]">
+                    <p className="mt-4 text-xs tracking-wide text-foreground-subtle">
                       使用技術：{work.tools.join(" / ")}
                     </p>
                   )}
@@ -367,8 +364,8 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-foreground/10">
-        <p className="mx-auto max-w-3xl px-5 py-8 text-sm text-foreground/70 sm:px-8">
+      <footer className="border-t border-border">
+        <p className="mx-auto max-w-3xl px-5 py-8 text-sm text-foreground-subtle sm:px-8">
           © SHO SAKAMOTO
         </p>
       </footer>
@@ -387,7 +384,7 @@ function SectionHeading({
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold tracking-[0.2em] text-sky-700 uppercase dark:text-sky-300">
+      <p className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
         {label}
       </p>
       <h2 id={id} className="mt-2 text-2xl font-bold sm:text-3xl">

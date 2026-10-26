@@ -1,8 +1,31 @@
 @import "tailwindcss";
 
+/*
+ * 配色はすべてここで定義する。
+ * ライト／ダークの切り替えは変数の値だけで行うため、
+ * コンポーネント側では dark: を書かずにトークン名（bg-surface など）を使う。
+ */
 :root {
-  --background: #faf8f4;
-  --foreground: #1f2a44;
+  /* 背景・面 */
+  --background: #f7f8f5;
+  --surface: #ffffff;
+  --accent: #dceae4;
+
+  /* 文字 */
+  --foreground: #26352f;
+  --foreground-muted: #4a5c54;
+  --foreground-subtle: #5d6e66;
+  --accent-foreground: #22493c;
+
+  /* 境界線 */
+  --border: #e3e7e2;
+  --border-strong: #c3cdc7;
+
+  /* ボタン・リンク */
+  --primary: #2f6b57;
+  --primary-hover: #245545;
+  --primary-foreground: #ffffff;
+
   --font-body: var(--font-geist-sans), "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo,
     "Noto Sans JP", sans-serif;
@@ -11,15 +34,39 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
   --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111a2e;
-    --foreground: #eef1f6;
+    --background: #141c19;
+    --surface: #1c2622;
+    --accent: #253831;
+
+    --foreground: #e6eeea;
+    --foreground-muted: #bccac3;
+    --foreground-subtle: #9fb0a8;
+    --accent-foreground: #c9e6da;
+
+    --border: #2c3a34;
+    --border-strong: #46584f;
+
+    --primary: #8fd0b7;
+    --primary-hover: #aadfca;
+    --primary-foreground: #12201b;
+
     color-scheme: dark;
   }
 }
